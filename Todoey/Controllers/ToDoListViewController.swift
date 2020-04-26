@@ -59,8 +59,8 @@ class ToDoListViewController: UITableViewController {
             }
         alert.addAction(action)
         alert.addTextField { (alertTextFiled) in
-        alertTextFiled.placeholder = "Add a new item..."
-        tfItem = alertTextFiled
+            alertTextFiled.placeholder = "Add a new item..."
+            tfItem = alertTextFiled
         }
         present(alert, animated: true, completion: nil)
     }
@@ -109,6 +109,17 @@ extension ToDoListViewController:UISearchBarDelegate{
         loadItems(with: request)
     }
     
-    //search
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchBar.text?.count == 0{
+            loadItems()
+            DispatchQueue.main.async {
+                searchBar.resignFirstResponder()
+            }
+        }
+        else
+        {
+            
+        }
+    }
 }
 
