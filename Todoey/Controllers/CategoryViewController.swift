@@ -37,7 +37,6 @@ class CategoryViewController: UITableViewController {
     //MARK: - TableView Delegate
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
         self.performSegue(withIdentifier: "goToItems", sender: nil)
     }
     
@@ -45,7 +44,14 @@ class CategoryViewController: UITableViewController {
         if(segue.identifier == "goToItems")
         {
             let itemViewController:ToDoListViewController = segue.destination as! ToDoListViewController
-            print(itemViewController.itemArray.count)
+            
+            if let indexPath = tableView.indexPathForSelectedRow{
+                itemViewController.selectedCategory = categoryArray[indexPath.row]
+            }
+            else{
+                print("error in finding index path")
+            }
+ 
         }
     }
     

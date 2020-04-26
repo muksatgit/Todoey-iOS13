@@ -30,7 +30,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="ToDo List" id="MxM-wi-MqN">
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="Dza-82-f6A">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Dza-82-f6A">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="addButtonPressed:" destination="OIi-Z5-A2u" id="zOe-6K-iA3"/>
