@@ -2,17 +2,15 @@
 //  Item.swift
 //  Todoey
 //
-//  Created by Mukesh Kumar on 2020-04-24.
+//  Created by Mukesh Kumar on 2020-04-27.
 //  Copyright © 2020 App Brewery. All rights reserved.
 //
 
 import Foundation
-struct Item:Codable {
-    var title:String = ""
-    var selected:Bool = false
-    
-    init(_ itemTitle:String, _ isSelected:Bool) {
-        title = itemTitle
-        selected = isSelected
-    }
+import RealmSwift
+class Item: Object {
+    @objc dynamic var title:String = ""
+    @objc dynamic var selected:Bool = false
+    @objc dynamic var dateCreated:Date?
+    var parentCategory = LinkingObjects(fromType: Category.self, property: "items")
 }
