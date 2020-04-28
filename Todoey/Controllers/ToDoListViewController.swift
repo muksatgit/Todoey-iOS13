@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class ToDoListViewController: UITableViewController{
+class ToDoListViewController: SwipeTableViewController{
     
     @IBOutlet weak var searchBar: UISearchBar!
     let realm = try! Realm()
@@ -37,7 +37,8 @@ class ToDoListViewController: UITableViewController{
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ToDoItemCell", for: indexPath)
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
+        //tableView.dequeueReusableCell(withIdentifier: "ToDoItemCell", for: indexPath)
         if let item = todoItems?[indexPath.row]
         {
             cell.textLabel?.text = item.title
@@ -48,6 +49,21 @@ class ToDoListViewController: UITableViewController{
             cell.textLabel?.text = "No items added yet."
         }
         return cell
+    }
+    
+    override func updateModel(at indexpath: IndexPath) {
+        if let item = todoItems?[indexpath.row]
+        {
+            do{
+                try self.realm.write{
+                    self.realm.delete(item)
+            }
+            }
+            catch
+            {
+                print("Erro deleting an item\(error)")
+            }
+        }
     }
     
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
